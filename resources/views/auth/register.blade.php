@@ -1,77 +1,237 @@
-@extends('layouts.app')
+<x-guest-layout>
+    <x-slot name="title">CSG Registration</x-slot>
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+    {{-- Include Vite assets (CSS and JS) --}}
+    @vite(['resources/css/registration.css', 'resources/js/app.js'])
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
+    <!-- Include SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+    <!-- BACKGROUND COLOR -->
+    <div class="registration"></div>
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+    <!-- CSG LOGO -->
+    <div class="content-wrapper">
+        <figure class="image-container">
+            <img src="{{ asset('images/csglogo_nobg.png') }}" alt="CSG Logo" class="csg-logo" />
+        </figure>
 
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+        <!-- REGISTRATION CONTAINER -->
+        <main class="form-container">
+            <form class="registration-form" method="POST" action="{{ route('register.register') }}">
+                @csrf
+                <h1 class="form-title" style="margin-top: 10px;">Registration Form</h1>
+
+                <!-- Name Fields -->
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label class="form-label">Name</label>
+                        <div class="name-inputs">
+                            <input
+                                type="text"
+                                name="first_name"
+                                placeholder="First name"
+                                class="form-input"
+                                value="{{ old('first_name', $student->first_name ?? '') }}"
+                                required
+                                readonly
+                            />
+                            @error('first_name')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
+
+                            <input
+                                type="text"
+                                name="last_name"
+                                placeholder="Last Name"
+                                class="form-input"
+                                value="{{ old('last_name', $student->last_name ?? '') }}"
+                                required
+                                readonly
+                            />
+                            @error('last_name')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
+
+                            <input
+                                type="text"
+                                name="middle_name"
+                                placeholder="Middle Name"
+                                class="form-input"
+                                value="{{ old('middle_name', $student->middle_name ?? '') }}"
+                                readonly
+                            />
+                            @error('middle_name')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
-        </div>
+
+                <!-- Student ID and Email -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">ID Number</label>
+                        <input
+                            type="text"
+                            name="student_id"
+                            placeholder="ID Number"
+                            class="form-input"
+                            value="{{ old('student_id', $student->student_id ?? '') }}"
+                            readonly
+                        />
+                        @error('student_id')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Student Email</label>
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="Email"
+                            class="form-input"
+                            value="{{ old('email', $student->email ?? '') }}"
+                            required
+                            readonly
+                        />
+                        @error('email')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+
+                <!-- Program and Year Level -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Program</label>
+                        <input
+                            type="text"
+                            name="program"
+                            placeholder="Program"
+                            class="form-input"
+                            value="{{ old('program', $programName ?? ($student->program->name ?? '')) }}"
+                            required
+                            readonly
+                        />
+                        <!-- Add hidden program_id field -->
+                        <input
+                            type="hidden"
+                            name="program_id"
+                            value="{{ $programId ?? ($student->program_id ?? '') }}"
+                        />
+                        @error('program')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                        @error('program_id')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Year Level</label>
+                        <input
+                            type="text"
+                            name="year_level"
+                            placeholder="Year Level"
+                            class="form-input"
+                            value="{{ old('year_level', $student->year_level ?? '') }}"
+                            required
+                            readonly
+                        />
+                        @error('year_level')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+
+                <!-- Contact Number and Date of Birth -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Contact Number</label>
+                        <input
+                            type="tel"
+                            name="contact_number"
+                            placeholder="Enter contact number"
+                            class="form-input"
+                            inputmode="numeric"
+                            pattern="[0-9]*"
+                            oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                            value="{{ old('contact_number', $student->contact_number ?? '') }}"
+                            required
+                            readonly
+                        />
+                        @error('contact_number')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Date of Birth</label>
+                        <input
+                            type="date"
+                            name="date_of_birth"
+                            class="form-input"
+                            value="{{ old('date_of_birth', $student->date_of_birth ?? '') }}"
+                            required
+                            readonly
+                        />
+                        @error('date_of_birth')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+
+                <!-- Password Fields -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Enter Password</label>
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="8-12 characters"
+                            class="form-input"
+                            required
+                        />
+                        @error('password')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Confirm Password</label>
+                        <input
+                            type="password"
+                            name="password_confirmation"
+                            placeholder="8-12 characters"
+                            class="form-input"
+                            required
+                        />
+                        @error('password_confirmation')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="button-container">
+                    <button type="submit" class="register-button">Register</button>
+                </div>
+            </form>
+        </main>
     </div>
-</div>
-@endsection
+
+    <!-- SweetAlert2 Script for Errors -->
+    @if (session('sweetalert_error'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                icon: 'error',
+                title: 'Registration Error',
+                text: '{{ session('sweetalert_error') }}',
+                confirmButtonText: 'OK'
+            });
+        });
+    </script>
+    @endif
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</x-guest-layout>

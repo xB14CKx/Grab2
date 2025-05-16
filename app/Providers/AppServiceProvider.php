@@ -2,31 +2,33 @@
 
 namespace App\Providers;
 
-use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Gate;
+use App\Models\User;
 
 class AppServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
-     *
-     * @return void
      */
-    public function register()
+    public function register(): void
     {
         //
     }
 
     /**
      * Bootstrap any application services.
-     *
-     * @param UrlGenerator $url
-     * @return void
      */
-    public function boot(UrlGenerator $url)
+    public function boot(): void
     {
-        if (env('APP_ENV') == 'production') {
-            $url->forceScheme('https');
-        }
+        // Admin Gate
+        Gate::define('is-admin', function (User $user) {
+            return $user->isAdmin();
+        });
+
+        // Student Gate
+        Gate::define('is-student', function (User $user) {
+            return $user->isStudent();
+        });
     }
 }

@@ -1,0 +1,581 @@
+/* Page container */
+.page-container {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    align-items: center;
+    background-color: #f7bd03;
+    top: 0;
+    left: 0;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    min-height: 2300px;
+    width: 100%;
+    padding: 56px 80px;
+    align-items: flex-start;
+}
+
+.background-logo {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.5;
+    mix-blend-mode: luminosity;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.admin-container {
+    width: 1400px;
+    position: relative;
+    padding-top: 76px;
+    padding-left: 150px;
+}
+
+.admin-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    width: 100%;
+}
+
+.admin-title {
+    color: #000;
+    text-align: left;
+    font-family: "Inter", sans-serif;
+    font-size: 34px;
+    font-weight: 900;
+    margin-top: -160px;
+    margin-left: -80px;
+    white-space: nowrap;
+}
+
+.school-year-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    color: #000;
+    font-weight: 700;
+    margin-left: auto;
+}
+
+.action-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: inherit;
+    margin-top: -90px;
+    margin-right: 80px;
+}
+
+.button-text {
+    color: #000;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.chevron-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.action-button:hover .chevron-icon path {
+    stroke: #4B2E2E;
+}
+
+.action-button:hover .button-text {
+    color: #4B2E2E;
+}
+
+.school-year-text {
+    width: 130px;
+    object-fit: contain;
+}
+
+.admin-divider {
+    width: 103.4%;
+    height: 2px;
+    background-color: #000;
+    border: none;
+    margin: 0;
+    opacity: 1;
+    margin-top: -50px;
+    margin-bottom: 25px;
+    margin-left: -80px;
+}
+
+.admin-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: -65px;
+    left: calc(12px - 5px);
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: none;
+    list-style: none;
+    padding: 0;
+    width: 150px;
+    z-index: 10;
+}
+
+.dropdown-menu li {
+    padding: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    text-align: left;
+}
+
+.dropdown-menu li:hover {
+    background: #f0f0f0;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+.ballot-container {
+    border-radius: 0;
+    display: flex;
+    max-width: 330px;
+    align-items: stretch;
+    gap: 40px 100px;
+    font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
+    text-align: center;
+    position: relative;
+}
+
+.ballot-content {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.candidate-section {
+    padding-left: 13px;
+    white-space: nowrap;
+    position: relative;
+    width: 100%;
+}
+
+.position-title {
+    color: #000;
+    font-size: 25px;
+    font-weight: 900;
+    margin-left: 80px;
+    text-align: left;
+}
+
+.more-options-button {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.more-options-button svg circle {
+    fill: #FFFFFF;
+}
+
+.more-options-button:hover svg circle {
+    fill: #f7bd03;
+}
+
+.options-menu {
+    position: absolute;
+    top: 30px;
+    right: -60px;
+    background: black;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    width: 80px;
+    z-index: 10;
+}
+
+.hidden {
+    display: none;
+}
+
+.option-button {
+    background: none;
+    border: none;
+    padding: 10px;
+    text-align: left;
+    cursor: pointer;
+    width: 100%;
+    font-size: 11px;
+    color: #fff;
+}
+
+.option-button:hover {
+    background: #f7bd03;
+}
+
+.candidate-grid {
+    display: grid;
+    flex-wrap: wrap;
+    grid-template-columns: repeat(5, 200px);
+    gap: 50px;
+    margin-top: 20px;
+}
+
+.candidate-card {
+    display: flex;
+    gap: 50px;
+    position: relative;
+    border-radius: 10px;
+    background-color: rgba(30, 30, 30, 0.71);
+    align-items: center;
+    margin-top: 13px;
+    padding: 10px 10px 20px 35px;
+    flex-direction: column;
+    font-size: 14px;
+    color: #fff;
+    font-weight: 600;
+    width: 210px;
+    height: 310px;
+    margin-left: 70px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.add-candidate-button {
+    width: 210px;
+    height: 310px;
+    border: 2px dashed black;
+    background: none;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    margin-left: 80px;
+}
+
+.add-icon {
+    width: 40px;
+    height: 40px;
+}
+
+.open-electionButton {
+    position: fixed;
+    width: 200px;
+    height: 45px;
+    padding: 12px;
+    border-radius: 8px;
+    color: black;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 100%;
+    cursor: pointer;
+    background-color: #f7bd03;
+    border: 2px solid black;
+    text-align: center;
+    margin-top: 580px;
+    margin-left: 1150px;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border 0.3s ease-in-out;
+}
+
+.open-electionButton:hover {
+    background-color: black;
+    color: #f7bd03;
+    border: 2px solid white;
+}
+
+.open-electionButton.close-election {
+    color: #f7bd03;
+    background-color: black;
+    border: 2px solid white;
+}
+
+.open-electionButton.close-election:hover {
+    color: black;
+    background-color: #f7bd03;
+    border: 2px solid black;
+}
+
+.modal {
+    z-index: 2000;
+}
+
+.modal-backdrop {
+    z-index: 1990;
+}
+
+.candidate-figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    aspect-ratio: 1;
+    object-position: center;
+    width: 150px;
+    border-radius: 10px;
+    margin-top: 20px;
+    max-width: 100%;
+    padding-right: 5px;
+    margin-left: -15px;
+}
+
+.candidate-image {
+    width: 600px;
+    height: 600px;
+    object-fit: cover;
+    border-radius: 8px;
+    aspect-ratio: 1/1;
+}
+
+.candidate-details {
+    text-align: center;
+    font-size: 13px;
+    line-height: 1.6;
+    color: white;
+    width: 150%;
+    max-width: 570px;
+    padding: 0 10px;
+}
+
+.candidate-name, .candidate-partylist {
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#imagePreview img {
+    max-height: 150px;
+    object-fit: cover;
+}
+
+/* Mobile-specific responsive styles */
+@media (max-width: 768px) {
+    .content-wrapper {
+        padding: 24px 16px;
+        max-width: 100%;
+    }
+
+    .admin-container {
+        width: 100%;
+        padding: 24px 16px;
+    }
+
+    .admin-header {
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .admin-title {
+        font-size: clamp(24px, 5vw, 28px);
+        margin: 0 0 8px 0;
+        white-space: normal;
+    }
+
+    .school-year-wrapper {
+        font-size: clamp(14px, 2.5vw, 15px);
+        margin-top: 8px;
+    }
+
+    .action-button {
+        margin: 0;
+        padding: 8px;
+    }
+
+    .button-text {
+        font-size: clamp(14px, 2.5vw, 15px);
+    }
+
+    .chevron-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .admin-divider {
+        width: 100%;
+        margin: 16px 0;
+        margin-left: 0;
+    }
+
+    .dropdown-menu {
+        top: 100%;
+        left: 0;
+        width: 140px;
+    }
+
+    .ballot-container {
+        max-width: 100%;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .position-title {
+        font-size: clamp(20px, 4vw, 22px);
+        margin-left: 8px;
+    }
+
+    .candidate-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 16px;
+    }
+
+    .candidate-card {
+        width: 100%;
+        max-width: 160px;
+        margin: 0;
+        padding: 16px;
+        min-height: 240px; /* Minimum height to maintain card structure */
+    }
+
+    .add-candidate-button {
+        width: 100%;
+        max-width: 160px;
+        margin: 0;
+        min-height: 240px; /* Minimum height to match candidate cards */
+    }
+
+    .add-icon {
+        width: 32px;
+        height: 32px;
+    }
+
+    .candidate-figure {
+        max-width: 120px;
+        margin: 16px 0 0 0;
+        padding: 0;
+    }
+
+    .candidate-image {
+        max-width: 120px;
+        height: auto;
+    }
+
+    .candidate-details {
+        font-size: clamp(12px, 2.5vw, 13px);
+        width: 100%;
+        max-width: 100%;
+        padding: 0 8px;
+    }
+
+    .candidate-name, .candidate-partylist {
+        font-size: clamp(13px, 2.5vw, 14px);
+    }
+
+    .open-electionButton {
+        bottom: 24px;
+        right: 24px;
+        width: 140px;
+        height: 36px;
+        font-size: 13px;
+        margin: 0;
+        position: fixed;
+    }
+}
+
+@media (max-width: 480px) {
+    .content-wrapper {
+        padding: 16px 12px;
+    }
+
+    .admin-container {
+        padding: 16px 12px;
+    }
+
+    .admin-title {
+        font-size: 20px;
+    }
+
+    .school-year-wrapper {
+        font-size: 13px;
+    }
+
+    .button-text {
+        font-size: 13px;
+    }
+
+    .chevron-icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    .dropdown-menu {
+        width: 120px;
+    }
+
+    .candidate-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 12px;
+    }
+
+    .candidate-card {
+        width: 100%;
+        max-width: 140px;
+        margin: 0;
+        padding: 12px;
+        min-height: 200px; /* Adjusted minimum height for smaller screens */
+    }
+
+    .add-candidate-button {
+        width: 100%;
+        max-width: 140px;
+        margin: 0;
+        min-height: 200px; /* Adjusted minimum height for smaller screens */
+    }
+
+    .candidate-figure {
+        max-width: 100px;
+    }
+
+    .candidate-image {
+        max-width: 100px;
+    }
+
+    .candidate-details {
+        font-size: 11px;
+    }
+
+    .candidate-name, .candidate-partylist {
+        font-size: 12px;
+    }
+
+    .open-electionButton {
+        width: 120px;
+        height: 32px;
+        font-size: 12px;
+        bottom: 16px;
+        right: 16px;
+    }
+}

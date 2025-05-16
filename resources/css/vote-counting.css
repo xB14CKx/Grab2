@@ -1,0 +1,517 @@
+body {
+    overflow-x: hidden;
+}
+
+.full-yellow-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #f7bd03;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.vote-counting-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    align-items: center;
+    background-color: #f7bd03;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    min-height: 100px;
+    width: 100%;
+    padding: 56px 80px;
+    align-items: flex-start;
+    z-index: 2;
+}
+
+.custom-drop-container {
+    display: flex;
+    gap: 30px;
+    font-family: Inter, sans-serif;
+    position: relative;
+    z-index: 2; /* Ensure dropdown is above background */
+    margin-left: 20px;
+    margin-top: 50px;
+    pointer-events: auto !important;
+}
+
+.background-image {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.5;
+    mix-blend-mode: luminosity;
+}
+
+.title {
+    color: #000;
+    text-align: left;
+    font-family: "Inter", sans-serif;
+    font-size: 32px;
+    font-weight: 900;
+    margin: 0;
+    white-space: nowrap;
+    margin-bottom: 8px;
+    margin-left: 70px;
+}
+
+.divider {
+    width: 95%;
+    height: 2px;
+    background-color: #000;
+    border: none;
+    margin: 0;
+    opacity: 1;
+    margin-bottom: 14px;
+    margin-left: 70px;
+}
+
+.position-title {
+    width: 100%;
+    color: #000;
+    font-family: "Inter", sans-serif;
+    font-size: 25px;
+    font-weight: 900;
+    margin-left: 70px;
+    margin-bottom: 10px;
+    margin-top: 30px;
+    letter-spacing: 0.5px;
+    text-transform: none;
+}
+
+.candidate-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: nowrap;
+}
+
+.candidate-comparison {
+    position: relative;
+    display: flex;
+    margin-top: 36px;
+    margin-left: 70px;
+    align-items: stretch;
+    gap: 2px;
+}
+
+.candidates-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 0;
+    width: fit-content;
+    gap: 36px;
+}
+
+.candidate-details {
+    display: flex;
+    width: 100%;
+    padding-left: 5px;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.candidate-icon {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.progress-wrapper {
+    width: 320px;
+    max-width: 90vw;
+    background: black;
+    border-radius: 16px;
+    height: 22px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    margin-left: 0;
+    margin-right: 0;
+    min-width: 120px;
+    position: relative;
+}
+
+.progress-bar-fill {
+    background: #f7bd03;
+    height: 100%;
+    border-radius: 16px 0 0 16px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    transition: width 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    z-index: 1;
+}
+
+.progress-percentage {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: 800;
+    font-size: 0.98rem;
+    z-index: 2;
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+}
+
+.vote-count {
+    text-align: left;
+    font-weight: 900;
+    font-size: 1.08rem;
+    color: black;
+    margin-left: 16px;
+    min-width: 56px;
+    white-space: nowrap;
+}
+
+.candidate-name {
+    font-weight: 700;
+    font-size: 13px;
+    margin-top: 10px;
+    margin-bottom: 0;
+    margin-left: -20px;
+    color: rgba(0, 0, 0, 1);
+    font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
+    text-align: center;
+}
+
+/* Mobile-specific styles */
+@media (max-width: 767px) {
+    .content-wrapper {
+        max-width: 100%;
+        padding: 24px 16px;
+    }
+
+    .title {
+        font-size: 24px;
+        margin-left: 8px;
+        white-space: normal;
+    }
+
+    .divider {
+        width: calc(100% - 16px);
+        margin-left: 8px;
+    }
+
+    .position-title {
+        font-size: 20px;
+        margin-left: 8px;
+    }
+
+    .candidate-comparison {
+        margin-left: 8px;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .candidates-wrapper {
+        width: 100%;
+        gap: 24px;
+    }
+
+    .candidate-row {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .candidate-details {
+        padding-left: 8px;
+        text-align: left;
+    }
+
+    .candidate-icon {
+        width: 50px;
+        height: 50px;
+        margin-right: 12px;
+    }
+
+    .progress-wrapper {
+        max-width: 100%;
+        height: 18px;
+    }
+
+    .progress-percentage {
+        font-size: 12px;
+    }
+
+    .vote-count {
+        font-size: 14px;
+        margin-left: 8px;
+        min-width: 48px;
+    }
+
+    .candidate-name {
+        font-size: 12px;
+        margin-left: 0;
+        text-align: left;
+    }
+}
+
+@media (max-width: 480px) {
+    .content-wrapper {
+        padding: 16px 12px;
+    }
+
+    .title {
+        font-size: 20px;
+    }
+
+    .position-title {
+        font-size: 18px;
+    }
+
+    .candidate-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .progress-wrapper {
+        height: 16px;
+    }
+
+    .progress-percentage {
+        font-size: 11px;
+    }
+
+    .vote-count {
+        font-size: 13px;
+    }
+
+    .candidate-name {
+        font-size: 11px;
+    }
+}
+
+/* Demographics */
+.dark-background-container {
+    position: absolute;
+    width: 1300px;
+    margin-left: 150px;
+    top: 330%;
+}
+
+.background-transparentWrapper {
+    width: 100%;
+    height: 100%;
+    margin-top: -40px;
+    pointer-events: none !important;
+    z-index: 1 !important;
+    position: relative;
+}
+
+.background-svg {
+    width: 100%;
+    height: 100%;
+    pointer-events: none !important;
+    z-index: 1 !important;
+    position: relative;
+}
+
+@media (max-width: 991px) {
+    .dark-background-container {
+      width: 100%;
+      height: auto;
+      min-height: 436px;
+    }
+}
+
+@media (max-width: 640px) {
+    .dark-background-container {
+      min-height: 300px;
+    }
+}
+
+/* Dropdown */
+.custom-drop-container {
+    display: flex;
+    gap: 30px;
+    font-family: Inter, sans-serif;
+    position: relative;
+    z-index: 2; /* Ensure dropdown is above background */
+    margin-left: 20px;
+    margin-top: 50px;
+    pointer-events: auto !important;
+}
+
+.custom-drop-container * {
+    pointer-events: auto !important;
+    z-index: 2000 !important;
+}
+
+.custom-dropdown-wrapper {
+    position: relative;
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    color: white;
+    border: none;
+    font-size: 15px;
+    font-weight: 700;
+    margin-top: -20px;
+}
+
+.dropdown-labelDemo {
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top:60px;
+}
+
+.drop-icon {
+    width: 30px;
+    height: 21px;
+    margin-top: 60px;
+    transition: transform 0.3s ease, stroke 0.3s ease;
+}
+
+.dropdown-labelPosi {
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 60px;
+}
+
+.down-icon {
+    width: 30px;
+    height: 21px;
+    margin-left: 30px;
+    margin-top: 60px;
+    transition: transform 0.3s ease, stroke 0.3s ease;
+}
+
+.dropdown-item:hover .dropdown-labelDemo,
+.dropdown-item:hover .dropdown-labelPosi {
+  color: #000000;
+}
+
+.dropdown-item:hover .drop-icon path,
+.dropdown-item:hover .down-icon path {
+  stroke: #000000;
+}
+
+/* Dropdown menu */
+.custom-dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%; /* Directly below the button */
+    left: 0;   /* Align left edge with button */
+    background-color: #ffffff;
+    border: 1px solid #d2ccccd2;
+    border-radius: 6px;
+    padding: 10px 0;
+    min-width: 180px;
+    z-index: 9999;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    transform: none; /* Remove previous transform */
+}
+
+.custom-dropdown-menu li {
+    padding: 10px 20px;
+    color: #000000;
+    list-style: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+.custom-dropdown-menu li:hover {
+  background-color: #d2ccccd2;
+}
+
+.custom-dropdown-menu.active {
+  display: block;
+}
+
+/* Pie Chart Comparison Section */
+.pie-charts-comparison {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 120px;
+    z-index: 10;
+}
+
+.pie-chart-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#pieChart1,
+#pieChart2 {
+    width: 350px !important;
+    height: 350px !important;
+    max-width: 90vw;
+    max-height: 90vh;
+    background: transparent;
+}
+
+.pie-chart-label {
+    text-align: center;
+    color: white;
+    margin-top: 18px;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+@media (max-width: 1200px) {
+    .pie-charts-comparison {
+        gap: 40px;
+    }
+    #pieChart1,
+    #pieChart2 {
+        width: 320px !important;
+        height: 320px !important;
+    }
+}
+
+@media (max-width: 900px) {
+    .pie-charts-comparison {
+        flex-direction: column;
+        gap: 32px;
+    }
+    #pieChart1,
+    #pieChart2 {
+        width: 220px !important;
+        height: 220px !important;
+    }
+    .pie-chart-label {
+        font-size: 18px;
+    }
+}
